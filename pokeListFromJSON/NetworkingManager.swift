@@ -12,13 +12,8 @@ import Combine
 
 class NetworkingManager: ObservableObject {
     
-    var objectWillChange = PassthroughSubject<NetworkingManager, Never>()
-    
-    var pokemonList = PokemonAPIList(results:[]) {
-        didSet {
-            objectWillChange.send(self)
-        }
-    }
+    @Published
+    var pokemonList = PokemonAPIList(results:[])
     
     init() {
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=5") else { return }
